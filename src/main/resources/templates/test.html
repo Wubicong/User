@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <base th:href="${#request.getContextPath()}+'/'">
+    <title>Title</title>
+</head>
+<body>
+    <input id="tel" type="text" value="" placeholder="常用手机号码"><br>
+    <input type="code" value="" placeholder="短信验证码">
+    <button id="msgCode" onclick="GetSMS()">获取短信验证码</button><br>
+    <button onclick="Register()">注册</button>
+    <script type="text/javascript" src="js/dist/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        function GetSMS() {
+            var tel=$("#tel").val();
+            if(tel==""){
+                alert("请填写手机号")
+            }else {
+                $.post("reg/r/"+tel,
+                    {
+                       'tel':tel,
+                    },function (data) {
+                        if(data.code==1){
+                            alert("请在手机上查看")
+
+                        }else{
+
+                        }
+                    })
+            }
+        }
+    </script>
+
+</body>
+</html>
